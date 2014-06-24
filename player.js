@@ -29,6 +29,7 @@ void function(window){
 
     // 播放相关方法，暴露给 native
     wandoujia.ios = {
+        videoDom: videoDom,
         hasVideo: function() {
             return !!videoDom;
         },
@@ -68,7 +69,10 @@ void function(window){
     });
     
     videoDom.addEventListener('pause', function() {
-       sendToNative('onpause');
+        sendToNative('onpause');
     });
 
+    videoDom.addEventListener('loadedmetadata', function() {
+        sendToNative('onloadedmetadata');
+    });
 }(window);
